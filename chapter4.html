@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Factors</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<link href="libraries/frameworks/datacamp/css/custom.css" rel="stylesheet">
+	
+	<link rel="icon" type="image/png" href="http://www.datacamp.com/img/favicon.png">
+	<!-- MathJax scripts -->
+	<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+	<div class="container">
+		<div class="row header">
+    
+		  <div class="col-lg-3">
+		    <img src="http://www.datacamp.com/img/logo-brown.png">
+		  </div>
+		  <div class="col-lg-9">
+		    <h1>This is a <span>rendered preview</span> of your chapter</h1>
+		    <p>If you have any questions concerning the course creation, please free to <a href="mailto:jonathan@datacamp.com">email us</a>.</p>
+		  </div>      
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div id="sidebar-affix" class="affix">
+					<ul class="nav sidebar-nav">
+						<li class="active"><a href="#general">General</a></li>
+						<li><a href="#exercise1">
+              Ex 1: What&#39;s a factor and why would you use it?</a>
+            </li>
+						<li><a href="#exercise2">
+              Ex 2: What&#39;s a factor and why would you use it? (2)</a>
+            </li>
+						<li><a href="#exercise3">
+              Ex 3: What&#39;s a factor and why would you use it? (3)</a>
+            </li>
+						<li><a href="#exercise4">
+              Ex 4: Factor levels</a>
+            </li>
+						<li><a href="#exercise5">
+              Ex 5: Summarizing a factor</a>
+            </li>
+						<li><a href="#exercise6">
+              Ex 6: Battle of the sexes</a>
+            </li>
+						<li><a href="#exercise7">
+              Ex 7: Ordered factors</a>
+            </li>
+						<li><a href="#exercise8">
+              Ex 8: Ordered factors (2)</a>
+            </li>
+						<li><a href="#exercise9">
+              Ex 9: Comparing ordered factors</a>
+            </li>
+					</ul>
+				</div>
+			</div>
+      
+			<div class="col-lg-9">
+				<div class="general document" id="general">
+					<h1>General information</h1>
+										<table class="table table-condensed">
+											<tbody>
+												<tr>
+													<td>Course Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Chapter Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Description</td>
+													<td>Data falls into a limited number of categories very often. For example, humans are either male or female. In R, categorical data is stored in factors. Given the importance of factors in data analysis, start learning how to create, subset and compare factors now!</td>
+												</tr>
+											</tbody>
+										</table>				</div>        
+			        				<div class="exercise document" id="exercise1">
+					<div class="page-header">
+						<h1>What&#39;s a factor and why would you use it?</h1>
+					</div>
+
+					<div class="row">
+						<p>In this chapter you dive into the wonderful world of <strong>factors</strong>. </p>
+
+<p>The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a <strong>limited number of categories</strong>. A continuous variable on the other hand, can correspond to an infinite number of values. </p>
+
+<p>It is important that R knows whether it&#39;s dealing with a continuous or a categorical variable. This, since the statistical models you will develop in the future treat both in a different way. (You will see later why this is the case.)</p>
+
+<p>A good example of a categorical variable, is the variable &#39;Gender&#39;. As you hopefully know by now, a human individual can either be &quot;Male&quot; or &quot;Female&quot;. So &quot;Male&quot; and &quot;Female&quot; are here the (only two) values of the categorical variable &quot;Gender&quot;, and every observation can be assigned to either the value &quot;Male&quot; of &quot;Female&quot;.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to variable `theory` the value `&quot;R uses factors for categorical variables!&quot;`
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just click the Submit Answer button and look at the console.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Assign to the variable theory what this chapter is about!
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Assign to the variable theory what this chapter is about!
+theory = &quot;R uses factors for categorical variables!&quot;
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;theory&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;theory&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(theory, &quot;R uses factors for categorical variables!&quot;)))) {
+    DM.result = list(FALSE, &quot;Make sure to assign the correct sentence to &#39;theory&#39;. Remember that R is case sensitive.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise2">
+					<div class="page-header">
+						<h1>What&#39;s a factor and why would you use it? (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>To create factors in R you make use of the function <code>factor()</code>. First thing to do is create a vector that contains all the observations belonging to a limited number of categories. For example, <code>gender_vector</code> contains the sex of 5 different individuals: <code>gender_vector = c(&quot;Male&quot;,&quot;Female&quot;,&quot;Female&quot;,&quot;Male&quot;,&quot;Male&quot;)</code>.</p>
+
+<p>It is clear, that there are 2 categories, or in R-terms <strong>&#39;factor levels&#39;</strong>, here: &quot;Male&quot; and &quot;Female&quot;. </p>
+
+<p>The function <code>factor()</code> will encode the vector as a factor: <code>factor_gender_vector = factor(gender_vector)</code>. </p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to `factor_gender_vector` the character vector `gender_vector` converted to a **factor**. Look at the console and note that R prints out the factor levels below the actual values.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just click the Submit Answer button and look at the console.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">gender_vector = c(&quot;Male&quot;,&quot;Female&quot;,&quot;Female&quot;,&quot;Male&quot;,&quot;Male&quot;)
+
+factor_gender_vector =
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">gender_vector = c(&quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;)
+
+factor_gender_vector = factor(gender_vector)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;factor_gender_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;factor_gender_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(factor_gender_vector, factor(gender_vector))))) {
+    DM.result = list(FALSE, &quot;Did you assign the factor of &#39;gender_vector&#39; to &#39;factor_gender_vector&#39;?&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise3">
+					<div class="page-header">
+						<h1>What&#39;s a factor and why would you use it? (3)</h1>
+					</div>
+
+					<div class="row">
+						<p>There are two types of categorical variables: a <strong>nominal categorical variable</strong> and an <strong>ordinal categorical variable</strong>. </p>
+
+<p>A nominal variable is a categorical variable without an implied order. This means it is impossible to say that &#39;one is worth more than the other&#39;. Think for example of the categorical variable <code>animals_vector</code>, with the categories <code>&quot;Elephant&quot;</code>, <code>&quot;Giraffe&quot;</code>, <code>&quot;Donkey&quot;</code> and <code>&quot;Horse&quot;</code>. Here, it is impossible to say one stands above or below the other. (Note: some of you might disagree ;-) ). </p>
+
+<p>In contrast, ordinal variables do have a natural ordering. Consider for example the categorical variable <code>temperature_vector</code> with the categories: <code>&quot;Low&quot;</code>, <code>&quot;Medium&quot;</code> and <code>&quot;High&quot;</code>. Here it is obvious that <code>&quot;Medium&quot;</code> stands above <code>&quot;Low&quot;</code>, and <code>&quot;High&quot;</code> stands above <code>&quot;Medium&quot;</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Click Submit Answer to check how R constructs and prints nominal and ordinal variables. Don&#39;t worry if you don&#39;t understand all the code just yet, we&#39;ll get to that.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just click the Submit Answer button and look at the console. Notice how R indicates the ordering of the factor levels for ordinal categorical variables.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">animals_vector = c(&quot;Elephant&quot;, &quot;Giraffe&quot;, &quot;Donkey&quot;, &quot;Horse&quot;)
+temperature_vector = c(&quot;High&quot;, &quot;Low&quot;, &quot;High&quot;, &quot;Low&quot;, &quot;Medium&quot;)
+
+factor_animals_vector = factor(animals_vector)
+factor_temperature_vector = factor(temperature_vector, order = TRUE, levels = c(&quot;Low&quot;, 
+    &quot;Medium&quot;, &quot;High&quot;))
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">animals_vector = c(&quot;Elephant&quot;, &quot;Giraffe&quot;, &quot;Donkey&quot;, &quot;Horse&quot;)
+temperature_vector = c(&quot;High&quot;, &quot;Low&quot;, &quot;High&quot;, &quot;Low&quot;, &quot;Medium&quot;)
+
+factor_animals_vector = factor(animals_vector)
+factor_temperature_vector = factor(temperature_vector, order = TRUE, levels = c(&quot;Low&quot;, 
+    &quot;Medium&quot;, &quot;High&quot;))
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">DM.result = TRUE
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">if (!exists(&quot;factor_animals_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;factor_animals_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(factor_animals_vector, factor(animals_vector))))) {
+    DM.result = list(FALSE, &quot;Did you assign the factor of &#39;animals_vector&#39; to &#39;factor_animals_vector&#39;?&quot;)
+} else if (!exists(&quot;factor_temperature_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;factor_temperature_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(factor_temperature_vector, factor(temperature_vector, 
+    order = TRUE, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;)))))) {
+    DM.result = list(FALSE, &quot;Did you assign the factor of &#39;temperature_vector&#39; to &#39;factor_temperature_vector&#39; and made sure to order it by the correct levels?&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise4">
+					<div class="page-header">
+						<h1>Factor levels</h1>
+					</div>
+
+					<div class="row">
+						<p>When you first get a data set, you&#39;ll often notice that it contains factors with specific factor levels. However, sometimes you will want to change the names of these levels for clarity or other reasons. R allows you to do this with the function <code>levels()</code>:</p>
+
+<p><code>levels(factor_vector) = c(&quot;name1&quot;,&quot;name2&quot;,...)</code></p>
+
+<p>A good illustration is the raw data provided to you by a survey. A standard question for every questionnaire is the gender of the respondent. You remember from the previous question this is a factor and when performing the questionnaire on the streets its levels are often coded as <code>&quot;M&quot;</code> and <code>&quot;F&quot;</code>. </p>
+
+<p><code>survey_vector = c(&quot;M&quot;,&quot;F&quot;,&quot;F&quot;,&quot;M&quot;,&quot;M&quot;)</code></p>
+
+<p>Next, when you want to start your data analysis your main concern is to keep a nice overview of all the variables and what they mean. At that point, you will often want to change the factor levels to <code>&quot;Male&quot;</code> and <code>&quot;Female&quot;</code> instead of <code>&quot;M&quot;</code> and <code>&quot;F&quot;</code> to make your life easier. </p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Convert the character vector `survey_vector` into a factor vector. Assign to `factor_survey_vector`.
+- Change the factor levels of `factor_survey_vector` to `&quot;Male&quot;` and `&quot;Female&quot;`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Mind the order in which you have to type in the factor levels. Hint: look at the order in which the levels are printed.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = 
+# Your code here
+levels(factor_survey_vector) = 
+factor_survey_vector
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = factor(survey_vector)
+
+# Your code here
+levels(factor_survey_vector) = c(&quot;Male&quot;, &quot;Female&quot;)
+
+factor_survey_vector
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;factor_survey_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;factor_survey_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(factor_survey_vector, factor(survey_vector))))) {
+    DM.result = list(FALSE, &quot;Did you assign the factor of &#39;survey_vector&#39; to &#39;factor_survey_vector&#39;?&quot;)
+} else if (!isTRUE(try(all.equal(levels(factor_survey_vector), c(&quot;Female&quot;, &quot;Male&quot;)) || 
+    all.equal(levels(factor_survey_vector), c(&quot;Male&quot;, &quot;Female&quot;))))) {
+    DM.result = list(FALSE, &quot;Did you assign the correct factor levels to &#39;factor_survey_vector&#39;? Remember that R is case sensitive.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise5">
+					<div class="page-header">
+						<h1>Summarizing a factor</h1>
+					</div>
+
+					<div class="row">
+						<p>After finishing this course, one of your favourite functions in R will be <code>summary()</code>. This will give you a quick overview of <code>some_variable</code>: </p>
+
+<p><code>summary(some_variable)</code> </p>
+
+<p>Going back to our survey, you would like to know how many <code>&quot;Male&quot;</code> responses you have in your study, and how many <code>&quot;Female&quot;</code>. The <code>summary()</code> function gives the answer to this question.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Ask a `summary()` of the `survey_vector` and `factor_survey_vector`. Interpret the result for both vectors, are they both equally useful in this case?
+</code></pre>
+
+<p>The fact that you identified <code>&quot;Male&quot;</code> and <code>&quot;Female&quot;</code> as factor levels in <code>factor_survey_vector</code>, enables R to show the number of elements for each category.</p>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Type this in the console: <code>summary(survey_vector)</code> <code>summary(factor_survey_vector)</code></p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = factor(survey_vector)
+levels(factor_survey_vector) = c(&quot;Female&quot;, &quot;Male&quot;)
+factor_survey_vector
+
+# Type your code here for survey_vector
+
+# Type your code here for factor_survey_vector
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = factor(survey_vector)
+levels(factor_survey_vector) = c(&quot;Female&quot;, &quot;Male&quot;)
+factor_survey_vector
+
+# Type your code here for survey_vector
+summary(survey_vector)
+
+# Type your code here for factor_survey_vector
+summary(factor_survey_vector)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;summary(survey_vector)&quot;)))){
+    DM.result = list(FALSE, &quot;Did you call the summary function on the &#39;survey_vector&#39;?&quot;);
+} else if (!(isTRUE(try(output_contains(&quot;summary(factor_survey_vector)&quot;)))){
+    DM.result = list(FALSE, &quot;Did you call the summary function on the &#39;factor_survey_vector&#39;?&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise6">
+					<div class="page-header">
+						<h1>Battle of the sexes</h1>
+					</div>
+
+					<div class="row">
+						<blockquote>
+<p>&quot;All animals are equal, but some animals are more equal than others&quot;
+--George Orwell </p>
+</blockquote>
+
+<p>In <code>factor_survey_vector</code> we have a factor with two levels: male &amp; female. But how does R value these relatively to each other? In other words, who sees R to be worth more, males or females?</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Read the code in the editor and click Submit Answer to see whether males are worth more than females.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just click Submit Answer.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = factor(survey_vector)
+levels(factor_survey_vector) = c(&quot;Female&quot;, &quot;Male&quot;)
+
+# Battle of the sexes: Male
+factor_survey_vector[1]
+# Female
+factor_survey_vector[2]
+# Male larger than female?
+factor_survey_vector[1] &gt; factor_survey_vector[2]
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">survey_vector = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector = factor(survey_vector)
+levels(factor_survey_vector) = c(&quot;Female&quot;, &quot;Male&quot;)
+
+# Battle of the sexes: Male
+factor_survey_vector[1]
+# Female
+factor_survey_vector[2]
+# Male larger than female?
+factor_survey_vector[1] &gt; factor_survey_vector[2]
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">DM.result = list(TRUE, &quot;Phew, it seems that R is gender-neutral. Or maybe just wants to stay out of these discussions ;-).&quot;)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise7">
+					<div class="page-header">
+						<h1>Ordered factors</h1>
+					</div>
+
+					<div class="row">
+						<p>Since <code>&quot;Male&quot;</code> and <code>&quot;Female&quot;</code> are unordered (or nominal) factor levels, R returns an error message. As seen before, for such factors R attaches an equal value to the levels. </p>
+
+<p>This is not always the case! Sometimes you will deal with factors that do have a natural ordering between its categories. If this is the case, we have to make sure we pass this information to R... </p>
+
+<p>Let&#39;s say your leading a research team of 5 data analysts and want to evaluate their performance. To do this, you track their speed, evaluate each analyst as <code>&quot;Slow&quot;</code>, <code>&quot;Fast&quot;</code> or <code>&quot;Ultra-Fast&quot;</code>, and save the results in <code>speed_vector</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- As a first step, assign `speed_vector` knowing that: 
+    Analyst 1: Fast, 
+    Analyst 2: Slow, 
+    Analyst 3: Slow,
+    Analyst 4: Fast and
+    Analyst 5: Ultra-fast.
+    Just as characters for now.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Assign to <code>speed_vector</code> : <code>c(&quot;Fast&quot;,&quot;Slow&quot;,...?</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Create speed_vector
+speed_vector =
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Create speed_vector
+speed_vector = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;speed_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;speed_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(speed_vector, c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, 
+    &quot;Ultra-fast&quot;))))) {
+    DM.result = list(FALSE, &quot;Make sure you assigned the correct vector to speed_vector. Remember that R is case sensitive.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise8">
+					<div class="page-header">
+						<h1>Ordered factors (2)</h1>
+					</div>
+
+					<div class="row">
+						<p><code>speed_vector</code> should be converted to an ordinal factor since its categories have a natural ordening. By default, the function <code>factor()</code> transforms <code>speed_vector</code> into an unordered factor. To create an ordered factor, you have to add two additional arguments: </p>
+
+<p><code>factor(some_vector,ordered=TRUE,levels=c(&quot;Level 1&quot;,&quot;Level 2&quot;...))</code> </p>
+
+<p>By setting the argument <code>ordered=TRUE</code> in the function <code>factor()</code>, you indicate the factor is ordered. With the argument <code>levels</code> you give the values of the factor in the correct order, e.g. <code>levels = c(&quot;Low&quot;,&quot;Medium&quot;,&quot;High&quot;)</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Rewrite the code for `speed_factor_vector`, this time taking into account that there is a specific order for the factor levels.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Use the function <code>factor()</code> to create <code>speed_factor_vector</code> based on <code>speed_character_vector</code>. The argument order should be set to <code>TRUE</code> since there is a natural ordering. The factor levels are in this case: <code>c(&quot;Slow&quot;,&quot;Fast&quot;,&quot;Ultra-fast&quot;)</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">speed_vector = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)
+
+# Add your code below
+factor_speed_vector = 
+# Print
+factor_speed_vector
+
+# R prints automagically in the right order
+summary(factor_speed_vector)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">speed_vector = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)
+# Add your code below
+factor_speed_vector = factor(speed_vector, ordered = TRUE, levels = c(&quot;Slow&quot;, 
+    &quot;Fast&quot;, &quot;Ultra-fast&quot;))
+
+# Print
+factor_speed_vector
+
+# R prints automagically in the right order
+summary(factor_speed_vector)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;factor_speed_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;factor_speed_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(factor_speed_vector, factor(speed_vector, ordered = TRUE, 
+    levels = c(&quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)))))) {
+    DM.result = list(FALSE, &quot;Make sure you assigned the correct factor to factor_speed_vector. Pay attention to the correct order of the levels argument.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise9">
+					<div class="page-header">
+						<h1>Comparing ordered factors</h1>
+					</div>
+
+					<div class="row">
+						<p>Having a bad day at work, &#39;data analyst number two&#39; enters your office and starts complaining that &#39;data analyst number five&#39; is slowing down the entire project. Since you know &#39;data analyst number two&#39; has the reputation of being a smarty-pants, you first decide to check if his statement is true. </p>
+
+<p>The fact that <code>speed_factor_vector</code> is now ordered, enables us to compare different elements (i.e. data analysts in this case). You can simply do this by using the well-known operators.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Check whether data analyst 2 is faster than data analyst 5 and assign the result to `compare_them`. Remember the `&gt;` operator allows to check whether one element is larger than the other.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>You can compare the elements of the vector with the <code>&gt;</code> operator. Relevant for this case: <code>vector[1] &gt; vector[2]</code> checks whether the first elements of vector is larger than the second element.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">speed_vector = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)
+speed_factor_vector = factor(speed_vector, ordered = TRUE, levels = c(&quot;Slow&quot;, 
+    &quot;Fast&quot;, &quot;Ultra-fast&quot;))
+
+# Your code below
+compare_them = 
+# Is data analyst 2 faster than data analyst 5
+compare_them
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">speed_vector = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Ultra-fast&quot;)
+speed_factor_vector = factor(speed_vector, ordered = TRUE, levels = c(&quot;Slow&quot;, 
+    &quot;Fast&quot;, &quot;Ultra-fast&quot;))
+
+# Your code below
+compare_them = speed_factor_vector[2] &gt; speed_factor_vector[5]
+
+# Is data analyst 2 faster than data analyst 5
+compare_them
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;compare_them&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;compare_them&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(compare_them, speed_factor_vector[2] &gt; speed_factor_vector[5])))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;compare_them&#39; doesn&#39;t compare the correct data analysts. Make sure to check the indices again.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- JavaScript plugins (requires jQuery) -->
+  <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="libraries/frameworks/datacamp/js/mathjax.js"></script>
+  <script>
+    $(document).ready(function(){
+      var navHeight = 199 - 29;
+      
+      $(document.body).scrollspy({
+        target: '#sidebar-affix',
+        offset: navHeight
+      })
+      
+      var $sideBar = $('#sidebar-affix');
+      
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            return navHeight;
+          }
+          , bottom: function () {
+            return 0;
+          }
+        }
+      });
+    });
+  </script></body>
+</html>

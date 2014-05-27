@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foundations for inference: Confidence intervals</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<link href="libraries/frameworks/datacamp/css/custom.css" rel="stylesheet">
+	
+	<link rel="icon" type="image/png" href="http://www.datacamp.com/img/favicon.png">
+	<!-- MathJax scripts -->
+	<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+	<div class="container">
+		<div class="row header">
+    
+		  <div class="col-lg-3">
+		    <img src="http://www.datacamp.com/img/logo-brown.png">
+		  </div>
+		  <div class="col-lg-9">
+		    <h1>This is a <span>rendered preview</span> of your chapter</h1>
+		    <p>If you have any questions concerning the course creation, please free to <a href="mailto:jonathan@datacamp.com">email us</a>.</p>
+		  </div>      
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div id="sidebar-affix" class="affix">
+					<ul class="nav sidebar-nav">
+						<li class="active"><a href="#general">General</a></li>
+						<li><a href="#exercise1">
+              Ex 1: One sample from Ames, Iowa</a>
+            </li>
+						<li><a href="#exercise2">
+              Ex 2: Question 7</a>
+            </li>
+						<li><a href="#exercise3">
+              Ex 3: Confidence intervals</a>
+            </li>
+						<li><a href="#exercise4">
+              Ex 4: Question 8</a>
+            </li>
+						<li><a href="#exercise5">
+              Ex 5: Question 9</a>
+            </li>
+						<li><a href="#exercise6">
+              Ex 6: Question 10</a>
+            </li>
+						<li><a href="#exercise7">
+              Ex 7: Challenge (1)</a>
+            </li>
+						<li><a href="#exercise8">
+              Ex 8: Challenge (2)</a>
+            </li>
+						<li><a href="#exercise9">
+              Ex 9: Challenge (3)</a>
+            </li>
+						<li><a href="#exercise10">
+              Ex 10: Question 11</a>
+            </li>
+						<li><a href="#exercise11">
+              Ex 11: The 99%</a>
+            </li>
+						<li><a href="#exercise12">
+              Ex 12: Question 12</a>
+            </li>
+						<li><a href="#exercise13">
+              Ex 13: End of Lab Survey - Question 1</a>
+            </li>
+						<li><a href="#exercise14">
+              Ex 14: End of Lab Survey - Question 2</a>
+            </li>
+						<li><a href="#exercise15">
+              Ex 15: End of Lab Survey - Question 3</a>
+            </li>
+						<li><a href="#exercise16">
+              Ex 16: End of Lab Survey - Question 4</a>
+            </li>
+						<li><a href="#exercise17">
+              Ex 17: End of Lab Survey - Question 5</a>
+            </li>
+					</ul>
+				</div>
+			</div>
+      
+			<div class="col-lg-9">
+				<div class="general document" id="general">
+					<h1>General information</h1>
+										<table class="table table-condensed">
+											<tbody>
+												<tr>
+													<td>Course Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Chapter Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Description</td>
+													<td>In this two part lab we will investigate sampling distributions and the Central Limit Theorem as well as confidence intervals. We will use housing data from Ames, Iowa (a small town in the US) in our exploration.</td>
+												</tr>
+											</tbody>
+										</table>				</div>        
+			        				<div class="exercise document" id="exercise1">
+					<div class="page-header">
+						<h1>One sample from Ames, Iowa</h1>
+					</div>
+
+					<div class="row">
+						<p>Welcome to Part B! In this part, we&#39;ll translate that concept of reliability of mean estimates into something more tangible: <strong>confidence intervals</strong>.</p>
+
+<p>If you have access to data on an entire population, say the size of every house in Ames, Iowa, it&#39;s straight forward to answer questions like, “How big is the typical house in Ames?” and “How much variation is there in sizes of houses?”. If you have access to only a sample of the population, as is often the case, the task becomes more complicated. </p>
+
+<p>What is your best guess for the typical size if you only know the sizes of several dozen houses? This sort of situation requires that you use your sample to make inference on what your population looks like.</p>
+
+<p>In this second part of the lab we&#39;ll start with a simple random sample of size 60 from the population. Specifically, this is a simple random sample of size 60. Note that the data set has information on many housing variables, but for the first portion of the lab we&#39;ll focus on the size of the house, represented by the variable <code>Gr.Liv.Area</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Draw a sample of size 60 from <code>population</code>. Assign it to <code>samp</code>.</li>
+<li>Calculate the mean of your sample. Assign it to <code>sample_mean</code>. </li>
+<li>Draw a histogram of the sample.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>If you&#39;re not sure how to proceed, you should go back and review Part A before you continue here.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Take a sample of size 60 of the population:
+population = ames$Gr.Liv.Area
+samp = 
+
+# Calculate the mean:
+sample_mean = 
+
+# Draw a histogram:
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Take a sample of size 60 of the population:
+population = ames$Gr.Liv.Area
+samp = sample(population, 60)
+
+# Calculate the mean:
+sample_mean = mean(samp)
+
+# Draw a histogram:
+hist(samp)
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;population&quot;) || !identical(population, ames$Gr.Liv.Area)) {
+    DM.result = list(FALSE, &quot;Did you change the &#39;population&#39; object? It should be equal to the &#39;Gr.Liv.Are&#39; variable of the &#39;ames&#39; data frame.&quot;)
+} else if (!exists(&quot;samp&quot;) || (length(samp) != 60) || !all(is.numeric(samp)) || 
+    any(is.na(samp))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with your sample.&quot;)
+} else if (!exists(&quot;sample_mean&quot;) || !identical(sample_mean, mean(samp))) {
+    DM.result = list(FALSE, &quot;Did you calculate the mean of your sample?&quot;)
+} else if (isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, &quot;size&quot;), c(&quot;population&quot;, 
+    &quot;60&quot;), eval = c(TRUE, TRUE))) == 1) &amp;&amp; isTRUE(try(function_has_arguments(&quot;hist&quot;, 
+    &quot;x&quot;, &quot;samp&quot;, eval = TRUE)) == 1)) {
+    DM.result = list(TRUE, &quot;Very good! One of the most common ways to describe the typical or central value of a distribution is to use the mean.&quot;)
+} else if (!student_typed(&quot;sample(&quot;)) {
+    DM.result = list(FALSE, &quot;Use the &#39;sample&#39; function to take a sample!&quot;)
+} else if (!student_typed(&quot;hist(&quot;)) {
+    DM.result = list(FALSE, &quot;Don&#39;t forget to draw a histogram of the sample!&quot;)
+} else if (isTRUE(try(function_has_arguments(&quot;hist&quot;, &quot;x&quot;, &quot;sample_mean&quot;)) == 
+    1)) {
+    DM.result = list(FALSE, &quot;Draw a histogram of your sample, not its mean!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;There seems to be something wrong with your solution, please try again...&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+set.seed(12345)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise2">
+					<div class="page-header">
+						<h1>Question 7</h1>
+					</div>
+
+					<div class="row">
+						<p>Your distribution should be similar to others&#39; distributions who also collect random samples from this population, but it is likely not exactly the same since it&#39;s a random sample.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>TRUE</li>
+<li>FALSE</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Maybe you should read a bit more on <a href="http://en.wikipedia.org/wiki/Sampling_%28statistics%29">random sampling</a>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 1)) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, think again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise3">
+					<div class="page-header">
+						<h1>Confidence intervals</h1>
+					</div>
+
+					<div class="row">
+						<p>Now let&#39;s return for a moment to the question that first motivated this lab: based on this sample, what can we infer about the population? 
+Based only on this single sample, the best estimate of the average living area of houses sold in Ames would be the <strong>sample mean</strong>, usually denoted as \(\overline{x}\) (here we&#39;re calling it <code>sample_mean</code>).</p>
+
+<p>That serves as a good point estimate but it would be useful to also communicate how uncertain we are of that estimate. This can be captured by using a <strong>confidence interval</strong>.</p>
+
+<p>We can calculate a 95% confidence interval for a sample mean by adding and subtracting 1.96 standard errors to the point estimate.
+<code>se = sd(samp)/sqrt(60)
+lower = sample_mean - 1.96 * se
+upper = sample_mean + 1.96 * se
+c(lower, upper)</code></p>
+
+<p>It is an important inference that we make with this: even though we don&#39;t know what the full population looks like, we&#39;re <em>95% confident that the true average size of houses in Ames lies between the values <code>lower</code> and <code>upper</code></em>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Calculate the 95% confidence interval as described above.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>If you are unfamiliar with the confidence interval formula, we refer you to the <a href="https://www.coursera.org/TODO">class lectures</a> on Coursera.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Calculate the standard error:
+se = 
+
+# Calculate the lower and upper bounds of your confidence interval and print them:
+lower = 
+upper = 
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Calculate the standard error:
+se = sd(samp)/sqrt(60)
+
+# Calculate the lower and upper bounds of your confidence interval and print
+# them:
+lower = sample_mean - 1.96 * se
+upper = sample_mean + 1.96 * se
+c(lower, upper)
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;samp&quot;) || (length(samp) != 60) || !all(is.numeric(samp)) || 
+    any(is.na(samp))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with your sample `samp`.&quot;)
+} else if (!exists(&quot;sample_mean&quot;) || !identical(sample_mean, mean(samp))) {
+    DM.result = list(FALSE, &quot;Did you change &#39;sample_mean&#39;? It should be the mean of your sample.&quot;)
+} else if (!exists(&quot;se&quot;) || !identical(se, sd(samp)/sqrt(60))) {
+    DM.result = list(FALSE, &quot;You have an error calculating your standard error &#39;se&#39;.&quot;)
+} else if (!exists(&quot;lower&quot;) || !identical(lower, sample_mean - 1.96 * se)) {
+    DM.result = list(FALSE, &quot;You have an error calculating your lower bound &#39;lower&#39;.&quot;)
+} else if (!exists(&quot;upper&quot;) || !identical(upper, sample_mean + 1.96 * se)) {
+    DM.result = list(FALSE, &quot;You have an error calculating your upper bound &#39;upper&#39;.&quot;)
+} else if (!output_contains(&quot;c(lower,upper)&quot;)) {
+    DM.result = list(FALSE, &quot;Don&#39;t forget to print the bounds!&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! There are a few conditions that need to be met for this interval to be valid. What are these conditions?&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+samp = sample(population, 60)
+sample_mean = mean(samp)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise4">
+					<div class="page-header">
+						<h1>Question 8</h1>
+					</div>
+
+					<div class="row">
+						<p>For the confidence interval to be valid, the sample mean must be normally distributed and have standard error \(s / \sqrt(n)\). Which of the following is <strong>not</strong> a condition needed for this to be true?</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>The sample is random.</li>
+<li>The sample size, 60, is less than 10% of all houses.</li>
+<li>The sample distribution must be nearly normal.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Review the <a href="https://class.coursera.org/statistics-001/lecture">class lectures</a> if you don&#39;t know this.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 3)) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else if (identical(DM.result, 2)) {
+    DM.result = list(FALSE, &quot;Incorrect, while we want larger samples, we still don&#39;t want the sample to be too large compared to the population.&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, think again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise5">
+					<div class="page-header">
+						<h1>Question 9</h1>
+					</div>
+
+					<div class="row">
+						<p>What does &quot;95% confidence&quot; mean?</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>95% of the time the true average area of houses in Ames, Iowa, will be in this interval.</li>
+<li>95% of random samples of size 60 will yield confidence intervals that contain the true average area of houses in Ames, Iowa.</li>
+<li>95% of the houses in Ames have an area in this interval.</li>
+<li>95% confident that the sample mean is in this interval.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Review the <a href="https://class.coursera.org/statistics-001/lecture">class lectures</a> if you don&#39;t know this.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 2)) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else if (identical(DM.result, 1)) {
+    DM.result = list(FALSE, &quot;Incorrect, the population doesn&#39;t move from time to time.&quot;)
+} else if (identical(DM.result, 3)) {
+    DM.result = list(FALSE, &quot;Incorrect, the confidence interval is about the population mean, not the individual sizes of houses.&quot;)
+} else if (identical(DM.result, 4)) {
+    DM.result = list(FALSE, &quot;Incorrect, the sample mean will always be in the interval.&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, think again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise6">
+					<div class="page-header">
+						<h1>Question 10</h1>
+					</div>
+
+					<div class="row">
+						<p>In this case you have the luxury of knowing the true population mean since we have data on the entire population. This value can be calculated using the following command: <code>mean(population)</code>.</p>
+
+<p><em>Tip: Check if your confidence interval <code>c(lower, upper)</code> captures the true average size of houses in Ames!</em></p>
+
+<p><strong>What proportion of 95% confidence intervals would you expect to capture the true population mean?</strong></p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>1%</li>
+<li>5%</li>
+<li>99%</li>
+<li>95%</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>This is basically the definition of a confidence interval. If you don&#39;t know this, you should review the <a href="https://www.coursera.org/TODO">class lectures</a>. </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 4)) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, please review the definition of the confidence level.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+samp = sample(population, 60)
+sample_mean = mean(samp)
+se = sd(samp)/sqrt(60)
+lower = sample_mean - 1.96 * se
+upper = sample_mean + 1.96 * se
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise7">
+					<div class="page-header">
+						<h1>Challenge (1)</h1>
+					</div>
+
+					<div class="row">
+						<p>To learn a bit more about how sample means and confidence intervals vary from one sample to another: <strong>a challenge!</strong></p>
+
+<p>Using R, we&#39;re going to recreate many samples using a for loop. Here is the rough outline:</p>
+
+<ol>
+<li>Obtain a random sample.</li>
+<li>Calculate the sample&#39;s mean and standard deviation.</li>
+<li>Use these statistics to calculate a confidence interval.</li>
+<li>Repeat steps (1)-(3) 50 times.</li>
+</ol>
+
+<p>But let&#39;s start slowly by initializing the objects you&#39;ll use to store the means and standard deviations. We&#39;ll also store the desired sample size as <code>n</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Initialize <code>samp_mean</code> and <code>samp_sd</code> with 50 <code>NA</code> values. (Use the <code>rep</code> function.)</li>
+<li>Set <code>n</code> to 60.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>The <code>rep(x, times)</code> function replicates a given <code>x</code> for <code>times</code> amount of times. So a vector of 10 <code>NA</code> values would be <code>rep(NA, 10)</code>. </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = 
+samp_sd = 
+n = 
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || !identical(samp_mean, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you correctly initialize &#39;samp_mean&#39;?&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || !identical(samp_sd, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you correctly initialize &#39;samp_sd&#39;?&quot;)
+} else if (!exists(&quot;n&quot;) || !identical(n, 60)) {
+    DM.result = list(FALSE, &quot;Did you correctly initialize &#39;n&#39;?&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Good! Now let&#39;s do the for loop.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise8">
+					<div class="page-header">
+						<h1>Challenge (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>Okay, remember the outline:</p>
+
+<ol>
+<li>Obtain a random sample.</li>
+<li>Calculate the sample&#39;s mean and standard deviation.</li>
+<li>Use these statistics to calculate a confidence interval.</li>
+<li>Repeat steps (1)-(3) 50 times.</li>
+</ol>
+
+<p>Now that we&#39;ve initialized our objects, we can use a <strong>for loop</strong> to calculate 50 times the mean and standard deviation of random samples.</p>
+
+<p>In this exercise we&#39;re taking away the training wheels, so it will be a bit harder than the previous ones. But hey, that&#39;s why it&#39;s called a challenge!</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Use a for loop to do 50 times the following: (1) create a sample of size <code>n</code> from the <code>population</code> (call this <code>samp</code>). (2) Calculate the <code>mean</code> and <code>sd</code> and assign them to their correct positions in <code>samp_mean</code> and <code>samp_sd</code> depending on which iteration you&#39;re on.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>As a reminder, the syntax of a for loop: <code>for (i in 1:n) { ... }</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+# For loop goes here:
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+# For loop goes here:
+for (i in 1:50) {
+    # Obtain a sample of size n = 60 from the population
+    samp = sample(population, n)
+    # Save sample mean in ith element of samp_mean
+    samp_mean[i] = mean(samp)
+    # Save sample sd in ith element of samp_sd
+    samp_sd[i] = sd(samp)
+}
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || identical(samp_mean, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_mean&#39;?&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || identical(samp_sd, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_sd&#39;?&quot;)
+} else if (!exists(&quot;n&quot;) || !identical(n, 60)) {
+    DM.result = list(FALSE, &quot;Did you correctly set &#39;n&#39; to 60?&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || (length(samp_mean) != 50) || !all(is.numeric(samp_mean)) || 
+    any(is.na(samp_mean))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_mean&#39;.&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || (length(samp_sd) != 50) || !all(is.numeric(samp_sd)) || 
+    any(is.na(samp_sd))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_sd&#39;.&quot;)
+} else if (!exists(&quot;samp&quot;)) {
+    DM.result = list(FALSE, &quot;You should assign your random samples to &#39;samp&#39;.&quot;)
+} else if (isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, &quot;size&quot;), c(&quot;population&quot;, 
+    &quot;n&quot;), eval = c(TRUE, TRUE))) == 1) &amp;&amp; identical(samp_mean[50], mean(samp)) &amp;&amp; 
+    identical(samp_sd[50], sd(samp))) {
+    DM.result = list(TRUE, &quot;Very nice! That was tricky but you handled it very well.&quot;)
+} else if (isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, &quot;size&quot;), c(&quot;population&quot;, 
+    &quot;n&quot;), eval = c(TRUE, TRUE))) &gt;= 2)) {
+    DM.result = list(FALSE, &quot;Almost, but you should calculate the mean and standard deviation from the same random sample in each iteration. Maybe assign the sample to a temporary object such as &#39;samp&#39;?&quot;)
+} else if (!isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, &quot;size&quot;), c(&quot;population&quot;, 
+    &quot;n&quot;), eval = c(TRUE, TRUE))) == 1)) {
+    DM.result = list(FALSE, &quot;Did you take any random samples?&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with your solution...&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise9">
+					<div class="page-header">
+						<h1>Challenge (3)</h1>
+					</div>
+
+					<div class="row">
+						<p>Lastly, we can construct the confidence intervals and plot them. In this exercise, you will have to calculate the 95% confidence intervals. </p>
+
+<p>If you don&#39;t remember, here is the formula for the lower and upper bound respectively:</p>
+
+<p>\(\overline{x} - 1.96 \times \frac{\sigma}{\sqrt(n)}\)</p>
+
+<p>\(\overline{x} + 1.96 \times \frac{\sigma}{\sqrt(n)}\)</p>
+
+<p>You can use this formula to calculate the lower and upper bounds with just two lines. </p>
+
+<p>As a hint: <code>samp_mean * 2</code> in R will multiply all 50 of the means with 2.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Calculate <code>lower</code> and <code>upper</code> bounds using the formula described above.</li>
+<li>Inspect the plot that was generated with the provided custom function <code>plot_ci</code>.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>\(\overline{x}\) is the <code>samp_mean</code> and \(\sigma\) is <code>samp_sd</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+# For loop goes here:
+for (i in 1:50) {
+    samp = sample(population, n)
+    samp_mean[i] = mean(samp)
+    samp_sd[i] = sd(samp)
+}
+
+# Calculate the interval bounds here:
+lower = 
+upper = 
+# Plotting the confidence intervals:
+pop_mean = mean(population)
+plot_ci(lower, upper, pop_mean)
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+# For loop goes here:
+for (i in 1:50) {
+    samp = sample(population, n)
+    samp_mean[i] = mean(samp)
+    samp_sd[i] = sd(samp)
+}
+
+# Calculate the interval bounds here:
+lower = samp_mean - 1.96 * (samp_sd/sqrt(n))
+upper = samp_mean + 1.96 * (samp_sd/sqrt(n))
+
+# Plotting the confidence intervals:
+pop_mean = mean(population)
+plot_ci(lower, upper, pop_mean)
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || identical(samp_mean, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_mean&#39;?&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || identical(samp_sd, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_sd&#39;?&quot;)
+} else if (!exists(&quot;n&quot;) || !identical(n, 60)) {
+    DM.result = list(FALSE, &quot;Did you correctly set &#39;n&#39; to 60?&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || (length(samp_mean) != 50) || !all(is.numeric(samp_mean)) || 
+    any(is.na(samp_mean))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_mean&#39;.&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || (length(samp_sd) != 50) || !all(is.numeric(samp_sd)) || 
+    any(is.na(samp_sd))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_sd&#39;.&quot;)
+} else if (!exists(&quot;samp&quot;) || !isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, 
+    &quot;size&quot;), c(&quot;population&quot;, &quot;n&quot;), eval = c(TRUE, TRUE))) == 1) || !identical(samp_mean[50], 
+    mean(samp)) || !identical(samp_sd[50], sd(samp))) {
+    DM.result = list(FALSE, &quot;Did you change something to the for loop?&quot;)
+} else if (!exists(&quot;lower&quot;) || !exists(&quot;upper&quot;)) {
+    DM.result = list(FALSE, &quot;Did you correctly define the lower and upper bouds of the interval?&quot;)
+} else if (!exists(&quot;pop_mean&quot;) || !isTRUE(try(function_has_arguments(&quot;plot_ci&quot;, 
+    c(&quot;lo&quot;, &quot;hi&quot;, &quot;m&quot;), c(&quot;lower&quot;, &quot;upper&quot;, &quot;pop_mean&quot;), eval = c(TRUE, TRUE, 
+        TRUE))) == 1)) {
+    DM.result = list(FALSE, &quot;Did you change something to the code for the plot?&quot;)
+} else if (identical(round(lower), round(samp_mean - 1.96 * samp_sd/sqrt(n))) &amp;&amp; 
+    identical(round(upper), round(samp_mean + 1.96 * samp_sd/sqrt(n)))) {
+    DM.result = list(TRUE, &quot;Perfecto!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with your solution, please try again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise10">
+					<div class="page-header">
+						<h1>Question 11</h1>
+					</div>
+
+					<div class="row">
+						<p>What is the appropriate critical value for a 99% confidence level?</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>0.01</li>
+<li>0.99</li>
+<li>1.96</li>
+<li>2.33</li>
+<li>2.58</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>The critical value for the 99% confidence level is the cut-off for the middle 99% of the standard normal distribution. You can use the command <code>qnorm(0.995)</code> or refer to a <a href="http://www.openintro.org/stat/down/probTables.pdf">table</a>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 5)) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, think again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise11">
+					<div class="page-header">
+						<h1>The 99%</h1>
+					</div>
+
+					<div class="row">
+						<p>Calculate 50 confidence intervals at the 99% confidence level. You do not need to obtain new samples, simply calculate new intervals based on the sample means and standard deviations you have already collected. Using the <code>plot_ci</code> function, plot all intervals and calculate the proportion of intervals that include the true population mean.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Calculate <code>lower</code> and <code>upper</code> bounds using the formula described above.</li>
+<li>Inspect the plot that was generated with the provided custom function <code>plot_ci</code>.</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>\(\overline{x}\) is the <code>samp_mean</code> and \(\sigma\) is <code>samp_sd</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+
+
+
+# For loop goes here:
+
+
+
+
+
+# Calculate the interval bounds here:
+
+
+
+# Plotting the confidence intervals:
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The &#39;ames&#39; data frame is already loaded into the workspace
+
+# Initialize &#39;samp_mean&#39;, &#39;samp_sd&#39; and &#39;n&#39;:
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+
+# For loop goes here:
+for (i in 1:50) {
+    samp = sample(population, n)
+    samp_mean[i] = mean(samp)
+    samp_sd[i] = sd(samp)
+}
+
+# Calculate the interval bounds here:
+lower = samp_mean - 2.58 * (samp_sd/sqrt(n))
+upper = samp_mean + 2.58 * (samp_sd/sqrt(n))
+
+# Plotting the confidence intervals:
+pop_mean = mean(population)
+plot_ci(lower, upper, pop_mean)
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;ames&quot;)) {
+    DM.result = list(FALSE, &quot;Seems like the data was not loaded correctly. Use the function &#39;load&#39; to load the data frame into the workspace.&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || identical(samp_mean, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_mean&#39;?&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || identical(samp_sd, rep(NA, 50))) {
+    DM.result = list(FALSE, &quot;Did you assign anything to &#39;samp_sd&#39;?&quot;)
+} else if (!exists(&quot;n&quot;) || !identical(n, 60)) {
+    DM.result = list(FALSE, &quot;Did you correctly set &#39;n&#39; to 60?&quot;)
+} else if (!exists(&quot;samp_mean&quot;) || (length(samp_mean) != 50) || !all(is.numeric(samp_mean)) || 
+    any(is.na(samp_mean))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_mean&#39;.&quot;)
+} else if (!exists(&quot;samp_sd&quot;) || (length(samp_sd) != 50) || !all(is.numeric(samp_sd)) || 
+    any(is.na(samp_sd))) {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with &#39;samp_sd&#39;.&quot;)
+} else if (!exists(&quot;samp&quot;) || !isTRUE(try(function_has_arguments(&quot;sample&quot;, c(&quot;x&quot;, 
+    &quot;size&quot;), c(&quot;population&quot;, &quot;n&quot;), eval = c(TRUE, TRUE))) == 1) || !identical(samp_mean[50], 
+    mean(samp)) || !identical(samp_sd[50], sd(samp))) {
+    DM.result = list(FALSE, &quot;Did you change something to the for loop?&quot;)
+} else if (!exists(&quot;lower&quot;) || !exists(&quot;upper&quot;)) {
+    DM.result = list(FALSE, &quot;Did you correctly define the lower and upper bouds of the interval?&quot;)
+} else if (!exists(&quot;pop_mean&quot;) || !isTRUE(try(function_has_arguments(&quot;plot_ci&quot;, 
+    c(&quot;lo&quot;, &quot;hi&quot;, &quot;m&quot;), c(&quot;lower&quot;, &quot;upper&quot;, &quot;pop_mean&quot;), eval = c(TRUE, TRUE, 
+        TRUE))) == 1)) {
+    DM.result = list(FALSE, &quot;Did you change something to the code for the plot?&quot;)
+} else if (identical(round(lower), round(samp_mean - 2.58 * samp_sd/sqrt(n))) &amp;&amp; 
+    identical(round(upper), round(samp_mean + 2.58 * samp_sd/sqrt(n)))) {
+    DM.result = list(TRUE, &quot;Correct!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Seems like something&#39;s wrong with your solution, please try again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise12">
+					<div class="page-header">
+						<h1>Question 12</h1>
+					</div>
+
+					<div class="row">
+						<p>We would expect 99% of the intervals to contain the true population mean.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>TRUE</li>
+<li>FALSE</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Think about the definition of the confidence level.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (identical(DM.result, 1)) {
+    DM.result = list(TRUE, &quot;Correct! It&#39;s been quite a long journey but you&#39;ve made it through lab 3, congratulations!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Incorrect, think again.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">load(url(&quot;http://s3.amazonaws.com/assets.datacamp.com/course/dasi/ames.RData&quot;))
+population = ames$Gr.Liv.Area
+set.seed(12345)
+samp_mean = rep(NA, 50)
+samp_sd = rep(NA, 50)
+n = 60
+for (i in 1:50) {
+    samp = sample(population, n)
+    samp_mean[i] = mean(samp)
+    samp_sd[i] = sd(samp)
+}
+lower = samp_mean - 2.58 * (samp_sd/sqrt(n))
+upper = samp_mean + 2.58 * (samp_sd/sqrt(n))
+pop_mean = mean(population)
+plot_ci(lower, upper, pop_mean)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise13">
+					<div class="page-header">
+						<h1>End of Lab Survey - Question 1</h1>
+					</div>
+
+					<div class="row">
+						<p>At the end of every lab, you will be asked to take a short survey existing out of 5 questions. These questions are not graded, but your feedback is very much appreciated and immensely useful for the development of the course.  Let&#39;s start with question one:</p>
+
+<p>This lab covered material that is covered in the class.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Strongly Disagree</li>
+<li>Disagree</li>
+<li>Neutral</li>
+<li>Agree</li>
+<li>Strongly Agree</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just give us your honest opinion ;-) </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (DM.result %in% c(1:5)) {
+    DM.result = list(TRUE, &quot;One down, four to go!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise14">
+					<div class="page-header">
+						<h1>End of Lab Survey - Question 2</h1>
+					</div>
+
+					<div class="row">
+						<p>The lab improved my understanding of these topics.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Strongly Disagree</li>
+<li>Disagree</li>
+<li>Neutral</li>
+<li>Agree</li>
+<li>Strongly Agree</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just give us your honest opinion ;-) </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (DM.result %in% c(1:5)) {
+    DM.result = list(TRUE, &quot;Let&#39;s look at the next one!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise15">
+					<div class="page-header">
+						<h1>End of Lab Survey - Question 3</h1>
+					</div>
+
+					<div class="row">
+						<p>The instructions were clear and it was easy to understand what was wanted.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Strongly Disagree</li>
+<li>Disagree</li>
+<li>Neutral</li>
+<li>Agree</li>
+<li>Strongly Agree</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just give us your honest opinion ;-) </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (DM.result %in% c(1:5)) {
+    DM.result = list(TRUE, &quot;Click next for the fourth survey question&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise16">
+					<div class="page-header">
+						<h1>End of Lab Survey - Question 4</h1>
+					</div>
+
+					<div class="row">
+						<p>The data were relevant and interesting to me.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Strongly Disagree</li>
+<li>Disagree</li>
+<li>Neutral</li>
+<li>Agree</li>
+<li>Strongly Agree</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just give us your honest opinion ;-) </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (DM.result %in% c(1:5)) {
+    DM.result = list(TRUE, &quot;Up to the final question!&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise17">
+					<div class="page-header">
+						<h1>End of Lab Survey - Question 5</h1>
+					</div>
+
+					<div class="row">
+						<p>The length of time took to complete lab.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<ul>
+<li>Less than 30 minutes</li>
+<li>Between 30 minutes and 1 hour</li>
+<li>Between 1 hour and 2 hours</li>
+<li>More than 2 hours</li>
+</ul>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just give us your honest opinion ;-) </p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;DM.result&quot;)) {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+} else if (DM.result %in% c(1:4)) {
+    DM.result = list(TRUE, &quot;A big THANKS for your feedback! See you next week.&quot;)
+} else {
+    DM.result = list(FALSE, &quot;Please select one of the options!&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- JavaScript plugins (requires jQuery) -->
+  <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="libraries/frameworks/datacamp/js/mathjax.js"></script>
+  <script>
+    $(document).ready(function(){
+      var navHeight = 199 - 29;
+      
+      $(document.body).scrollspy({
+        target: '#sidebar-affix',
+        offset: navHeight
+      })
+      
+      var $sideBar = $('#sidebar-affix');
+      
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            return navHeight;
+          }
+          , bottom: function () {
+            return 0;
+          }
+        }
+      });
+    });
+  </script></body>
+</html>

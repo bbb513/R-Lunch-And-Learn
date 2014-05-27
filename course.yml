@@ -1,0 +1,22 @@
+id: 462
+title: R Lunch and Learn
+author_field: Barry Barrios, Daniel Chertok, Peter Arroyo
+description: The course is designed to teach you how to use the R software for real-world
+  problems. We'll start out with an introduction to R and master the basics of this
+  beautiful open source language on the first day. Onwards, we'll rapidly go over
+  ROracle, predictive modeling, how to create your own R package, etc. <br><br>This
+  course takes a hands-on approach where we each follow along using our computers.
+  We take an unconventional approach. Why lecture from my notes? You can read them.
+  You stay on task by, preparing questions and problems for the R-Lunch-And_Learn;
+  We each follow along on R assignments discussing with colleagues and myself; Meeting
+  with me individually; Applying R to cases I introduce.<br><br> The advantage, you
+  get what you want out of the course. Let's try it and see what happens.
+chapters:
+- chapter1.Rmd: 982
+- chapter2.Rmd: 983
+- chapter3.Rmd: 984
+- chapter4.Rmd: 985
+- chapter5.Rmd: 986
+- chapter6.Rmd: 987
+- chapter7.Rmd: 991
+

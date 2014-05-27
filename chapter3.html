@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matrices</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<link href="libraries/frameworks/datacamp/css/custom.css" rel="stylesheet">
+	
+	<link rel="icon" type="image/png" href="http://www.datacamp.com/img/favicon.png">
+	<!-- MathJax scripts -->
+	<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+	<div class="container">
+		<div class="row header">
+    
+		  <div class="col-lg-3">
+		    <img src="http://www.datacamp.com/img/logo-brown.png">
+		  </div>
+		  <div class="col-lg-9">
+		    <h1>This is a <span>rendered preview</span> of your chapter</h1>
+		    <p>If you have any questions concerning the course creation, please free to <a href="mailto:jonathan@datacamp.com">email us</a>.</p>
+		  </div>      
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div id="sidebar-affix" class="affix">
+					<ul class="nav sidebar-nav">
+						<li class="active"><a href="#general">General</a></li>
+						<li><a href="#exercise1">
+              Ex 1: What&#39;s a matrix?</a>
+            </li>
+						<li><a href="#exercise2">
+              Ex 2: Analyzing matrices, you shall</a>
+            </li>
+						<li><a href="#exercise3">
+              Ex 3: Naming a matrix</a>
+            </li>
+						<li><a href="#exercise4">
+              Ex 4: Calculating the worldwide box office</a>
+            </li>
+						<li><a href="#exercise5">
+              Ex 5: Adding a column for the Worlwide box office</a>
+            </li>
+						<li><a href="#exercise6">
+              Ex 6: Adding a row</a>
+            </li>
+						<li><a href="#exercise7">
+              Ex 7: The total box office revenue for the entire saga</a>
+            </li>
+						<li><a href="#exercise8">
+              Ex 8: Selection of matrix elements</a>
+            </li>
+						<li><a href="#exercise9">
+              Ex 9: A little arithmetic with matrices</a>
+            </li>
+						<li><a href="#exercise10">
+              Ex 10: A little arithmetic with matrices (2)</a>
+            </li>
+					</ul>
+				</div>
+			</div>
+      
+			<div class="col-lg-9">
+				<div class="general document" id="general">
+					<h1>General information</h1>
+										<table class="table table-condensed">
+											<tbody>
+												<tr>
+													<td>Course Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Chapter Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Description</td>
+													<td>In this chapter, you'll learn how to work with matrices in R. By the end of the chapter you'll be able to create matrices, and understand how you can do basic computations with them. You'll analyze the box office numbers of Star Wars to illustrate the use of matrices in R. May to force be with you!</td>
+												</tr>
+											</tbody>
+										</table>				</div>        
+			        				<div class="exercise document" id="exercise1">
+					<div class="page-header">
+						<h1>What&#39;s a matrix?</h1>
+					</div>
+
+					<div class="row">
+						<p>In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional. </p>
+
+<p>In R, you can construct a matrix with the <code>matrix</code> function, for example: <code>matrix(1:9, byrow=TRUE, nrow=3)</code>:</p>
+
+<ul>
+<li>The first argument, is the collection of elements that R will arrange into the rows and columns of the matrix. Here, we use <code>1:9</code> which constructs the vector <code>c(1,2,3,4,5,6,7,8,9)</code>. </li>
+<li>The argument <code>byrow</code> indicates that the matrix is filled by the rows. If we want the vector to be filled by the columns, we just place <code>bycol=TRUE</code> or <code>byrow=FALSE</code>. </li>
+<li>The third argument <code>nrow</code> indicates that the matrix should have three rows.</li>
+</ul>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Construct a matrix with 3 rows containing the numbers 1 up to 9. Click the Submit Answer button and look at the output in the console. Hint, use: `matrix(1:9, byrow=TRUE, nrow=3)`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Read the assignment carefully, the answer is already given ;-).</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Construction of a matrix with 3 rows containing the numbers 1 up to 9
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Construction of a matrix with 3 rows containing the numbers 1 up to 9
+matrix(1:9, byrow = TRUE, nrow = 3)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;matrix(1:9, byrow=TRUE, nrow=3)&quot;)))){
+    DM.result = list(FALSE, &quot;There seems to be an issue with the matrix definition.&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise2">
+					<div class="page-header">
+						<h1>Analyzing matrices, you shall</h1>
+					</div>
+
+					<div class="row">
+						<p>It is time to get your hands dirty. In the following exercises you will analyze the box office numbers of the Star Wars franchisee. May the force be with you! </p>
+
+<p>In the editor, three vectors are defined each representing the box office numbers from the first three Star Wars movies. The first element of each vector indicates the US box office revenue, the second element refers to the Non-US box office (source: Wikipedia).</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Construct a matrix with one row for each movie (thus 3 rows). The first column is for the US box office revenue, and the second column for the non-US box office revenue. Name the matrix `star_wars_matrix`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Remember that you can construct a matrix containing the numbers 1 up to 9 with: <code>matrix(1:9, byrow=TRUE, nrow=3)</code>. In this case, you don&#39;t want the numbers 1 up to 9, but the elements of the 3 Star Wars movies: this means the input vector is thus: <code>c(new_hope,empire_strikes,return_jedi)</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions!
+# The first element: US, the second element: Non-US 
+new_hope                = c(460.998007, 314.4)
+empire_strikes  = c(290.475067, 247.900000)
+return_jedi         = c(309.306177,165.8)
+
+# Add your code below to construct the matrix
+star_wars_matrix = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions!  The first element: US, Second element:
+# Non-US
+new_hope = c(460.998007, 314.4)
+empire_strikes = c(290.475067, 247.9)
+return_jedi = c(309.306177, 165.8)
+
+# Add your code below to construct the matrix
+star_wars_matrix = matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, 
+    byrow = TRUE)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;new_hope&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;new_hope&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(new_hope, c(460.998007, 314.4))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;new_hope&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;empire_strikes&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;empire_strikes&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(empire_strikes, c(290.475067, 247.9))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;empire_strikes&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;return_jedi&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;return_jedi&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(return_jedi, c(309.306177, 165.8))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;return_jedi&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(c(new_hope, empire_strikes, 
+    return_jedi), nrow = 3, byrow = TRUE))))) {
+    DM.result = list(FALSE, &quot;Did you assign to &#39;star_wars_matrix&#39; to the correct matrix containing the vector that holds all three movies?&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Good! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise3">
+					<div class="page-header">
+						<h1>Naming a matrix</h1>
+					</div>
+
+					<div class="row">
+						<p>To help you remember what&#39;s stored in <code>star_wars_matrix</code>, you&#39;d like to add the names of the movies for the rows. Not only does this helps you to read the data, it is also useful to select certain elements from the matrix later. </p>
+
+<p>Similar to vectors, you can add names for the rows and the columns of a matrix with:</p>
+
+<ul>
+<li><code>rownames(my_matrix) = row_names_vectors</code></li>
+<li><code>colnames(my_matrix) = col_names_vectors</code></li>
+</ul>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Give the columns of `star_wars_matrix` the names `&quot;US&quot;` and `&quot;non-US&quot;`.
+- Give the rows of the matrix `star_wars_matrix` the names of the three movies. In case you are not a fan ;-), the movie names are: &quot;A new hope&quot;, &quot;The empire strikes back&quot; and &quot;Return of the Jedi&quot;.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Don&#39;t forget that R is case sensitive. The vector for the column names is thus: <code>c(&quot;US&quot;,&quot;non-US&quot;)</code> and for the row names: <code>c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  First element: US, Second element:
+# Non-US
+new_hope = c(460.998007, 314.4)
+empire_strikes = c(290.475067, 247.9)
+return_jedi = c(309.306177, 165.8)
+
+# Construct matrix
+star_wars_matrix = matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, 
+    byrow = TRUE)
+
+# Add your code here such that rows and columns of star_wars_matrix have a
+# name!
+
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  First element: US, Second element:
+# Non-US
+new_hope = c(460.998007, 314.4)
+empire_strikes = c(290.475067, 247.9)
+return_jedi = c(309.306177, 165.8)
+
+# Construct matrix
+star_wars_matrix = matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, 
+    byrow = TRUE)
+
+# Add your code here such that rows and columns of star_wars_matrix have a
+# name!
+colnames(star_wars_matrix) = c(&quot;US&quot;, &quot;non-US&quot;)
+rownames(star_wars_matrix) = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;new_hope&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;new_hope&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(new_hope, c(460.998007, 314.4))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;new_hope&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;empire_strikes&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;empire_strikes&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(empire_strikes, c(290.475067, 247.9))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;empire_strikes&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;return_jedi&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;return_jedi&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(return_jedi, c(309.306177, 165.8))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;return_jedi&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(c(new_hope, empire_strikes, 
+    return_jedi), nrow = 3, byrow = TRUE))))) {
+    DM.result = list(FALSE, &quot;Did you assign to &#39;star_wars_matrix&#39; to the correct matrix containing the vector that holds all three movies?&quot;)
+} else if (!isTRUE(try(all.equal(colnames(star_wars_matrix), c(&quot;US&quot;, &quot;non-US&quot;))))) {
+    DM.result = list(FALSE, &quot;Did you set the column names of &#39;star_wars_matrix&#39; to the correct vector?&quot;)
+} else if (!isTRUE(try(all.equal(rownames(star_wars_matrix), c(&quot;A new hope&quot;, 
+    &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;))))) {
+    DM.result = list(FALSE, &quot;Did you set the rownames names of &#39;star_wars_matrix&#39; to the correct vector?&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise4">
+					<div class="page-header">
+						<h1>Calculating the worldwide box office</h1>
+					</div>
+
+					<div class="row">
+						<p>The single most important thing for a movie to become an instant legend in Tinseltown is its worldwide box office figures. </p>
+
+<p>To calculate the total box office revenue for the three Star Wars movies, you have to take the sum of the US revenue column and the non-US revenue column. </p>
+
+<p>In R, the function <code>rowSums()</code> conveniently calculates the totals for each row of a matrix. This function creates a new vector. <code>sum_of_rows_vector =  rowSums(my_matrix)</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Calculate the worldwide box office figures for the three movies and put these in the vector named `worldwide_vector`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>The <code>rowSums()</code> function will calculate the total box office for each row of the <code>star_wars_matrix</code>, if you supply <code>star_wars_matrix</code> as an argument to that function by putting it between the brackets.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box_office_all              = c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie_names                 = c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)
+col_titles                  = c(&quot;US&quot;,&quot;non-US&quot;)
+star_wars_matrix      = matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles))
+
+# Your code here
+worldwide_vector = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  Construct matrix:
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# Your code here
+worldwide_vector = rowSums(star_wars_matrix)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;box_office_all&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;box_office_all&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(box_office_all, c(461, 314.4, 290.5, 247.9, 
+    309.3, 165.8))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;box_office_all&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;movie_names&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;movie_names&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(movie_names, c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, 
+    &quot;Return of the Jedi&quot;))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;movie_names&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;col_titles&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;col_titles&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(col_titles, c(&quot;US&quot;, &quot;non-US&quot;))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;col_titles&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(box_office_all, nrow = 3, 
+    byrow = TRUE, dimnames = list(movie_names, col_titles)))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;star_wars_matrix&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;worldwide_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;worldwide_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(worldwide_vector, rowSums(star_wars_matrix))))) {
+    DM.result = list(FALSE, &quot;Did you use the &#39;rowSums() function on the correct vector?&#39;&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise5">
+					<div class="page-header">
+						<h1>Adding a column for the Worlwide box office</h1>
+					</div>
+
+					<div class="row">
+						<p>In the previous exercise, you calculated the vector that contained the worldwide box office receipt for each of the three Star Wars movies. However, this vector is not yet part of <code>star_wars_matrix</code>...</p>
+
+<p>You can add a column or multiple columns to a matrix with the <code>cbind</code> function, which merges matrices and/or vectors together by column. For example: <code>new_combined_matrix = cbind( matrix1, matrix2, vector1, ... )</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Add `worldwide_vector` as a new column to the `star_wars_matrix` and assign to `all_wars_matrix`. Use the `cbind()` function.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Bind the <code>worldwide_vector</code> to the <code>star_wars_matrix</code> with the <code>cbind()</code> function, with <code>cbind( the_correct_matrix, the_correct_vector)</code> and assign to <code>all_star_wars_matrix</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+# Construct matrix
+box_office_all              = c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie_names                     = c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)
+col_titles                      = c(&quot;US&quot;,&quot;non-US&quot;)
+star_wars_matrix            = matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles))
+
+# The worldwide box office figures
+worldwide_vector = rowSums(star_wars_matrix)
+
+# Bind the new variable worldwide_vector as a column to star_wars_matrix
+all_wars_matrix = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  Construct matrix
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# The worldwide box office figures
+worldwide_vector = rowSums(star_wars_matrix)
+
+# Bind the new variable worldwide_vector as a column to star_wars_matrix
+all_wars_matrix = cbind(star_wars_matrix, worldwide_vector)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;box_office_all&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;box_office_all&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(box_office_all, c(461, 314.4, 290.5, 247.9, 
+    309.3, 165.8))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;box_office_all&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;movie_names&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;movie_names&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(movie_names, c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, 
+    &quot;Return of the Jedi&quot;))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;movie_names&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;col_titles&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;col_titles&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(col_titles, c(&quot;US&quot;, &quot;non-US&quot;))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;col_titles&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(box_office_all, nrow = 3, 
+    byrow = TRUE, dimnames = list(movie_names, col_titles)))))) {
+    DM.result = list(FALSE, &quot;Make sure that you assign to &#39;star_wars_matrix&#39; to the correct vector.&quot;)
+} else if (!exists(&quot;worldwide_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;worldwide_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(worldwide_vector, rowSums(star_wars_matrix))))) {
+    DM.result = list(FALSE, &quot;Did you use the &#39;rowSums() function on the correct vector?&#39;&quot;)
+} else if (!exists(&quot;all_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;all_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(all_wars_matrix, cbind(star_wars_matrix, worldwide_vector))))) {
+    DM.result = list(FALSE, &quot;Did you use the &#39;cbind() function with the correct arguments?&#39;&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise6">
+					<div class="page-header">
+						<h1>Adding a row</h1>
+					</div>
+
+					<div class="row">
+						<p>Just like every action has a reaction, every <code>cbind()</code> has a <code>rbind()</code>. (Okay, we admit, we are pretty bad with metaphors.) </p>
+
+<p>Your R workspace (<a href="http://www.statmethods.net/interface/workspace.html">check out what a workspace is</a>) now contains two matrices, the <code>star_wars_matrix</code> we just used (the first trilogy) but also the <code>star_wars_matrix2</code> for the second trilogy. Type the name of the matrices in the console and press enter in case you want to have a closer look.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to `all_wars_matrix` a new matrix with `star_wars_matrix` in the first three rows and `star_wars_matrix2` in the next three rows.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Bind the two matrices together in the following way: <code>rbind( matrix1, matrix2 )</code> and assign to <code>all_wars_matrix</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+
+# Matrix containing first trilogy box office
+star_wars_matrix  
+
+# Matrix containing second trilogy box office
+star_wars_matrix2 
+
+# Combine the both Star Wars trilogies in one matrix
+all_wars_matrix = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)
+
+# Matrix containing first trilogy box office
+star_wars_matrix
+
+# Matrix containing second trilogy box office
+star_wars_matrix2
+
+# Combine the both Star Wars trilogies in one matrix
+all_wars_matrix = rbind(star_wars_matrix, star_wars_matrix2)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;all_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;all_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(all_wars_matrix, rbind(star_wars_matrix, star_wars_matrix2))))) {
+    DM.result = list(FALSE, &quot;Did you use the &#39;rbind() function with the correct arguments?&#39;&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r"># Construct matrix
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# Construct matrix2
+box_office_all2 = c(474.5, 552.5, 310.7, 338.7, 380.3, 468.5)
+movie_names2 = c(&quot;The Phantom Menace&quot;, &quot;Attack of the Clones&quot;, &quot;Revenge of the Sith&quot;)
+star_wars_matrix2 = matrix(box_office_all2, nrow = 3, byrow = TRUE, dimnames = list(movie_names2, 
+    col_titles))
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise7">
+					<div class="page-header">
+						<h1>The total box office revenue for the entire saga</h1>
+					</div>
+
+					<div class="row">
+						<p>Just like every <code>cbind()</code> has a <code>rbind()</code>, every <code>colSums()</code> has a <code>rowSums()</code>. Your R workspace contains the <code>all_wars_matrix</code> you constructed in the previous exercise (Type <code>all_wars_matrix</code> in the console if you don&#39;t recall what it contains). Let&#39;s now calculate the total box office revenue for the entire saga.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Calculate the total revenue for the US and the non-US region and assign `total_revenue_vector`. You can use the `colSums()` function.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>You should use the <code>colSums()</code> function with <code>star_wars_matrix</code> as argument to find the total box office per region.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Print box office Star Wars: In Millions (!) for 2 trilogies
+all_wars_matrix
+
+total_revenue_vector = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Print box office Star Wars: In Millions (!) for 2 trilogies
+all_wars_matrix
+
+total_revenue_vector = colSums(all_wars_matrix)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;total_revenue_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;total_revenue_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(total_revenue_vector, colSums(all_wars_matrix))))) {
+    DM.result = list(FALSE, &quot;Did you use the &#39;colSums() function on the all_wars_matrix?&#39;&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r"># Construct matrix
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# Construct matrix2
+box_office_all2 = c(474.5, 552.5, 310.7, 338.7, 380.3, 468.5)
+movie_names2 = c(&quot;The Phantom Menace&quot;, &quot;Attack of the Clones&quot;, &quot;Revenge of the Sith&quot;)
+star_wars_matrix2 = matrix(box_office_all2, nrow = 3, byrow = TRUE, dimnames = list(movie_names2, 
+    col_titles))
+
+# Combine the both Star Wars trilogies in one matrix
+all_wars_matrix = rbind(star_wars_matrix, star_wars_matrix2)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise8">
+					<div class="page-header">
+						<h1>Selection of matrix elements</h1>
+					</div>
+
+					<div class="row">
+						<p>Similar to vectors, use the square brackets <code>[ ]</code> to select one or multiple elements from a matrix. Whereas vectors have 1 dimension, matrices have 2 dimensions, therefore use a comma to separate what to select from the rows and what from the columns. For example: </p>
+
+<ul>
+<li><code>my_matrix[1,2]</code> selects from the first row the second element.</li>
+<li><code>my_matrix[1:3,2:4]</code> selects rows 1,2,3 and columns 2,3,4.</li>
+</ul>
+
+<p>If you want to select all elements of a row or column, no number is needed before or after the comma:</p>
+
+<ul>
+<li><code>my_matrix[,1]</code> selects all elements of the first column.</li>
+<li><code>my_matrix[1,]</code> selects all elements of the first row.</li>
+</ul>
+
+<p>Back to Star Wars with this newly acquired knowledge!</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Calculate the average Non-US revenue per movie. Assign this to the `non_us_all` variable (In other words: take the average of all elements of the second column).
+- Same question, but now only for the first two Star Wars movies.
+</code></pre>
+
+<p>Hint: Use the function <code>mean()</code> to compute the average.</p>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>You can use the function <code>mean()</code> to calculate the average of the inputs to the function. Remember that you can select all rows of a matrix for a specific column x, by typing <code>my_matrix[,x]</code>. Non-US is the second column.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+# Construct matrix 
+box_office_all          = c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie_names             = c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)
+col_titles              = c(&quot;US&quot;,&quot;non-US&quot;)
+star_wars_matrix    = matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles)) 
+
+star_wars_matrix 
+
+# your code here
+non_us_all  =   
+# your code here
+non_us_some = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  Construct matrix:
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+star_wars_matrix
+
+# your code here
+non_us_all = mean(star_wars_matrix[, 2])
+# your code here
+non_us_some = mean(star_wars_matrix[1:2, 2])
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;star_wars_matrix&quot;)){
+  DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;);
+} else if (!isTRUE(try(all.equal(star_wars_matrix,matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles)))))){
+  DM.result = list(FALSE, &quot;The &#39;star_wars_matrix&#39; contains a wrong value.&quot;);
+} if (!exists(&quot;non_us_all&quot;)){
+  DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;non_us_all&#39;.&quot;);
+} else if (!isTRUE(try(all.equal(non_us_all,mean(star_wars_matrix[,2]))))){
+  DM.result = list(FALSE, &quot;Did you assign to &#39;non_us_all&#39; the mean of the correct sub vector?&quot;);
+} else if (!exists(&quot;non_us_some&quot;)){
+  DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;non_us_some&#39;.&quot;);
+} else if (!isTRUE(try(all.equal(non_us_some,mean(star_wars_matrix[1:2,2]))))){
+  DM.result = list(FALSE, &quot;Did you assign to &#39;non_us_some&#39; the mean of the correct sub vector?&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise9">
+					<div class="page-header">
+						<h1>A little arithmetic with matrices</h1>
+					</div>
+
+					<div class="row">
+						<p>Similar to what you learned with vectors, the standard operators like <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>, etc. work in an element-wise way on matrices in R. </p>
+
+<p>For example: <code>2*my_matrix</code> multiplies each element of <code>my_matrix</code> by two. </p>
+
+<p>As a newly-hired data analyst for Lucasfilm, your job is to find out how many visitors went to each movie for each geographical area. You already have the total revenue figures in <code>star_wars_matrix</code>. Assume that the price of a ticket was 5 dollars. Note that box office numbers divided by the ticket price gives you the number of visitors.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to `visitors` the matrix with the estimated number of Non-US and US visitors for the three movies.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>The number of visitors is the revenue (which is stored in <code>star_wars_matrix</code> ) divided by the price of ticket (assumed to be $5).</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+# Construct matrix:
+box_office_all          = c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie_names             = c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)
+col_titles              = c(&quot;US&quot;,&quot;non-US&quot;)
+star_wars_matrix    = matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles))
+
+# your code here!
+visitors = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  Construct matrix:
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# your code here!
+visitors = star_wars_matrix/5
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(box_office_all, nrow = 3, 
+    byrow = TRUE, dimnames = list(movie_names, col_titles)))))) {
+    DM.result = list(FALSE, &quot;The &#39;star_wars_matrix&#39; contains a wrong value.&quot;)
+} else if (!exists(&quot;visitors&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;visitors&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(visitors, star_wars_matrix/5)))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;visitors&#39; doesn&#39;t contain the correct value. Remember that operations on matrices are element-wise.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise10">
+					<div class="page-header">
+						<h1>A little arithmetic with matrices (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>Just like <code>2*my_matrix</code> multiplied every element of <code>my_matrix</code> by two, <code>my_matrix1 * my_matrix2</code> creates a matrix where each element is the product of the corresponding elements in <code>my_matrix1</code> and <code>my_matrix2</code>. </p>
+
+<p>After looking at the result of the previous exercise, big boss Lucas pointed out that the ticket prices went up over time with one dollar per movie. He asks to redo the analysis based on the prices you can find in <code>ticket_prices_matrix</code> (source: imagination). </p>
+
+<p>(Those familiar with matrices should note this is not the standard matrix multiplication for which you should use <code>%*%</code> in R.)</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to `visitors` the matrix with your estimated number of Non-US and US visitors for the three movies.
+- Assign to `average_us_visitor` the average number of visitors in the US for a Star Wars movie.
+- Assign to `average_non_us_visitor` the average number of visitors in non-US areas.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<pre><code>- You can use the function `mean()` to calculate the average of the inputs to the function.
+- To get the number of visitors in the US, select the first column from `visitors` using `visitors[ ,1]`.
+</code></pre>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box_office_all              = c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie_names                 = c(&quot;A new hope&quot;,&quot;The empire strikes back&quot;,&quot;Return of the Jedi&quot;)
+col_titles                  = c(&quot;US&quot;,&quot;non-US&quot;)
+star_wars_matrix        = matrix(box_office_all, nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles))
+ticket_prices_matrix  = matrix(c(5,5,6,6,7,7), nrow=3, byrow=TRUE, dimnames=list(movie_names,col_titles)) 
+
+# Your code below:
+visitors = 
+# Your code below:
+average_us_visitor = 
+# Your code below:
+average_non_us_visitor =
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Box office Star Wars: In Millions (!)  Construct matrix:
+box_office_all = c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names = c(&quot;A new hope&quot;, &quot;The empire strikes back&quot;, &quot;Return of the Jedi&quot;)
+col_titles = c(&quot;US&quot;, &quot;non-US&quot;)
+star_wars_matrix = matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+ticket_prices_matrix = matrix(c(5, 5, 6, 6, 7, 7), nrow = 3, byrow = TRUE, dimnames = list(movie_names, 
+    col_titles))
+
+# Your code here
+visitors = star_wars_matrix/ticket_prices_matrix
+# Your code here
+average_us_visitor = mean(visitors[, 1])
+# Your code here
+average_non_us_visitor = mean(visitors[, 2])
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;star_wars_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;star_wars_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(star_wars_matrix, matrix(box_office_all, nrow = 3, 
+    byrow = TRUE, dimnames = list(movie_names, col_titles)))))) {
+    DM.result = list(FALSE, &quot;The &#39;star_wars_matrix&#39; contains a wrong value.&quot;)
+} else if (!exists(&quot;ticket_prices_matrix&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;ticket_prices_matrix&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(ticket_prices_matrix, matrix(c(5, 5, 6, 6, 
+    7, 7), nrow = 3, byrow = TRUE, dimnames = list(movie_names, col_titles)))))) {
+    DM.result = list(FALSE, &quot;The &#39;ticket_prices_matrix&#39; contains a wrong value.&quot;)
+} else if (!exists(&quot;visitors&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;visitors&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(visitors, star_wars_matrix/ticket_prices_matrix)))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;visitors&#39; doesn&#39;t contain the correct value. Remember that you can divide two matrices.&quot;)
+} else if (!exists(&quot;average_us_visitor&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;average_us_visitor&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(average_us_visitor, mean(visitors[, 1]))))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;average_us_visitor&#39; doesn&#39;t contain the average of the US visitors.&quot;)
+} else if (!exists(&quot;visitors&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;visitors&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(average_non_us_visitor, mean(visitors[, 2]))))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;average_non_us_visitor&#39; doesn&#39;t contain the average of the non-US visitors.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- JavaScript plugins (requires jQuery) -->
+  <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="libraries/frameworks/datacamp/js/mathjax.js"></script>
+  <script>
+    $(document).ready(function(){
+      var navHeight = 199 - 29;
+      
+      $(document.body).scrollspy({
+        target: '#sidebar-affix',
+        offset: navHeight
+      })
+      
+      var $sideBar = $('#sidebar-affix');
+      
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            return navHeight;
+          }
+          , bottom: function () {
+            return 0;
+          }
+        }
+      });
+    });
+  </script></body>
+</html>

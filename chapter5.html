@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data frames</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<link href="libraries/frameworks/datacamp/css/custom.css" rel="stylesheet">
+	
+	<link rel="icon" type="image/png" href="http://www.datacamp.com/img/favicon.png">
+	<!-- MathJax scripts -->
+	<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head>
+<body>
+	<div class="container">
+		<div class="row header">
+    
+		  <div class="col-lg-3">
+		    <img src="http://www.datacamp.com/img/logo-brown.png">
+		  </div>
+		  <div class="col-lg-9">
+		    <h1>This is a <span>rendered preview</span> of your chapter</h1>
+		    <p>If you have any questions concerning the course creation, please free to <a href="mailto:jonathan@datacamp.com">email us</a>.</p>
+		  </div>      
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div id="sidebar-affix" class="affix">
+					<ul class="nav sidebar-nav">
+						<li class="active"><a href="#general">General</a></li>
+						<li><a href="#exercise1">
+              Ex 1: What&#39;s a data frame?</a>
+            </li>
+						<li><a href="#exercise2">
+              Ex 2: Quick, have a look at your dataset</a>
+            </li>
+						<li><a href="#exercise3">
+              Ex 3: Have a look at the structure</a>
+            </li>
+						<li><a href="#exercise4">
+              Ex 4: Creating a data frame</a>
+            </li>
+						<li><a href="#exercise5">
+              Ex 5: Creating a data frame (2)</a>
+            </li>
+						<li><a href="#exercise6">
+              Ex 6: Selection of data frame elements</a>
+            </li>
+						<li><a href="#exercise7">
+              Ex 7: Selection of data frame elements (2)</a>
+            </li>
+						<li><a href="#exercise8">
+              Ex 8: Only planets with rings</a>
+            </li>
+						<li><a href="#exercise9">
+              Ex 9: Only planets with rings (2)</a>
+            </li>
+						<li><a href="#exercise10">
+              Ex 10: Only planets with rings but shorter</a>
+            </li>
+						<li><a href="#exercise11">
+              Ex 11: Sorting</a>
+            </li>
+						<li><a href="#exercise12">
+              Ex 12: Sorting your data frame</a>
+            </li>
+					</ul>
+				</div>
+			</div>
+      
+			<div class="col-lg-9">
+				<div class="general document" id="general">
+					<h1>General information</h1>
+										<table class="table table-condensed">
+											<tbody>
+												<tr>
+													<td>Course Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Chapter Title</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Description</td>
+													<td>Most datasets you'll be working with will be stored as a data frame. By the end of this chapter, you'll be able to create a data frame, select interesting parts of a data frame and order a data frame according to certain variables.</td>
+												</tr>
+											</tbody>
+										</table>				</div>        
+			        				<div class="exercise document" id="exercise1">
+					<div class="page-header">
+						<h1>What&#39;s a data frame?</h1>
+					</div>
+
+					<div class="row">
+						<p>You may remember from the chapter about matrices that all the elements you put in a matrix should be of the same type. Back then, your dataset on Star Wars only contained numeric elements. </p>
+
+<p>However, when doing a market research survey you often have questions such as:</p>
+
+<ul>
+<li>&#39;Are your married?&#39; or a &#39;yes/no&#39; questions (= boolean data type)</li>
+<li>&#39;How old are you?&#39; (= numeric data type)</li>
+<li>&#39;What is your opinion on this product?&#39; or other &#39;open- ended&#39; questions(= character data type)</li>
+<li class = '..</li>
+</ul>
+
+<p>The'>output when doing the above survey on a number of respondents, is a dataset of different data types. You will often find yourself working with datasets containing different data types instead of only one. </p>
+
+<p>A data frame has the variables of a dataset as columns and the observations as rows. This will be a familiar concept for those coming from different statistical software packages such as SAS or SPSS.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Click Submit Answer. The data from the built-in example data frame `mtcars` will be printed to the console.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just click Submit Answer!</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">mtcars  # Built-in R dataset stored in a data frame
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Just click the Run button
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;mtcars&quot;)))){
+    DM.result = list(FALSE, &quot;Make sure you output &#39;mtcars&#39;.&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise2">
+					<div class="page-header">
+						<h1>Quick, have a look at your dataset</h1>
+					</div>
+
+					<div class="row">
+						<p>Wow, that&#39;s a lot of cars! </p>
+
+<p>Working with large datasets is not uncommon in data analysis. When working with (extremely) large datasets and data frames, your first task as a data analyst is to develop a clear understanding of its structure and main elements. Therefore, it is often useful to show only a small part of the entire dataset. </p>
+
+<p>So how to do this in R?</p>
+
+<ul>
+<li>The function <code>head()</code> enables you to show the first observations of a data frame (or any R object you pass to it).</li>
+<li>Unoriginally, the function <code>tail()</code> prints out the last observations in your dataset.</li>
+</ul>
+
+<p>Both <code>head()</code> and <code>tail()</code> also print a top line called the &#39;header&#39;, which contains the names of the different variables in your dataset.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Give an overview of the `mtcars` data set by printing its first observations and the corresponding header.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Use the <code>head()</code> function and ask the head of <code>mtcars</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Have a quick look at your data
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">head(mtcars)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;head(mtcars)&quot;)))){
+    DM.result = list(FALSE, &quot;Make sure you use the &#39;head()&#39; function on &#39;mtcars&#39;.&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise3">
+					<div class="page-header">
+						<h1>Have a look at the structure</h1>
+					</div>
+
+					<div class="row">
+						<p>Another, often used, method to get a rapid overview of your data is the function <code>str()</code>. The function <code>str()</code> shows you the structure of your dataset. For a data frame it tells you:</p>
+
+<ul>
+<li>The total number of observations (e.g. 32 car types)</li>
+<li>The total number of variables (e.g. 11 car features)</li>
+<li>A full list of the variables names (e.g. mpg, cyl ... )</li>
+<li>The data type of each variable (e.g. num for car features)</li>
+<li>The first observations</li>
+</ul>
+
+<p>Applying the <code>str()</code> function will often be the first thing you do when receiving a new dataset or data frame. It is a great way to get more insight in your dataset before diving into the real analysis!</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Investigate the structure of the `mtcars`. Make sure you see the same numbers, variables and data types as  mentioned above.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Use the <code>str()</code> function with <code>mtcars</code> as input!</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Investigate the structure of the mtcars dataset to get started!
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Investigate the structure of the mtcars dataset to get started!
+str(mtcars)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;str(mtcars)&quot;)))){
+    DM.result = list(FALSE, &quot;Make sure you use the &#39;str()&#39; function on &#39;mtcars&#39;.&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise4">
+					<div class="page-header">
+						<h1>Creating a data frame</h1>
+					</div>
+
+					<div class="row">
+						<p>Since using built-in datasets is not even half the fun of creating your own datasets, the rest of this chapter is based on your personally developed dataset. So put your jet pack on, because it is time for some good old fashioned space exploration! </p>
+
+<p>As a first goal, you want to construct a data frame that describes the main characteristics of 8 planets in our solar system. According to your good friend Buzz the main features of a planet are:</p>
+
+<ul>
+<li>The type of planet (Terrestrial or Gass Giant).</li>
+<li>The planet&#39;s diameter relative to the diameter of the earth.</li>
+<li>The planet&#39;s rotation across the sun relative to that of earth.</li>
+<li>If the planet has rings or not (TRUE or FALSE).</li>
+</ul>
+
+<p>After doing some high-quality research on <a href="http://en.wikipedia.org/wiki/Planet">wikipedia</a>, you feel confident enough to create the necessary vectors: planets, type, diameter, rotation and rings (see editor, note that an element of one vector is linked to the element of another vector based on its position).</p>
+
+<p>You construct a data frame with the <code>data.frame</code> function. As arguments, you should provide the above mentioned vectors as input that should become the different columns of that data frame. Therefore, it is important that each vector used to construct a data frame has an equal length. But do not forget, it is possible (and likely) they have different types of data.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Use the function `data.frame` to construct a data frame. Call this variable `planets_df`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>The <code>data.frame(col1,col2,col3,...)</code> function takes as arguments the vectors that will become the columns of the data frame. The columns in this case are (in this order): planet, type, diameter, rotation and rings.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create the data frame:
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(planets, type, diameter, rotation, rings)
+
+str(planets_df)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;planets_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;planets_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(planets_df, data.frame(planets, type, diameter, 
+    rotation, rings))))) {
+    DM.result = list(FALSE, &quot;Make sure to assign the correct order of arguments to the data.frame &#39;planets_df&#39;. The correct order is planets, type, diameter, rotation and rings.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise5">
+					<div class="page-header">
+						<h1>Creating a data frame (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>Make sure you have 8 observations and 5 variables. (The <code>planets_df</code> has been loaded in the workspace.)</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Use of the function `str()` to investigate the structure of the new `planets_df` variable.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>This is easy, no hints ;-)!</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Check the structure of planets_df
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Check the structure of planet.df
+str(planets_df)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!(isTRUE(try(output_contains(&quot;str(planets_df)&quot;)))){
+    DM.result = list(FALSE, &quot;Make sure you use the &#39;str()&#39; function on &#39;planets_df&#39;.&quot;);
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;);
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise6">
+					<div class="page-header">
+						<h1>Selection of data frame elements</h1>
+					</div>
+
+					<div class="row">
+						<p>Similar to vectors and matrices, you select elements from a data frame with the help of square brackets <code>[ ]</code>. By using a comma, you can indicate what to select from the rows and the columns respectively. For example:</p>
+
+<ul>
+<li><code>my_data_frame[1,2]</code> selects from the first row in <code>my_data_frame</code>, the second element.</li>
+<li><code>my_data_frame[1:3,2:4]</code> selects rows 1,2,3 and columns 2,3,4 in <code>my_data_frame</code>.</li>
+</ul>
+
+<p>Sometimes you want to select all elements of a row or column. In that case, you just don&#39;t put anything in front or behind the comma: e.g. <code>my_data_frame[1,]</code> selects all elements of the first row. Let&#39;s now apply this technique on <code>planets_df</code>!</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Create the data frame `closest_planets_df` containing all data on the first three planets.
+- Create the data frame `furthest_planets_df` containing all data on the last three planets.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p><code>planets_df[1:3,]</code> will select alle elements of the first three rows.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The planets_df data frame from the previous exercise is pre-loaded
+closest_planets_df = 
+furthest_planets_df = 
+# Have a look:
+closest_planets_df
+furthest_planets_df
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The planets_df data frame from the previous exercise is pre-loaded
+closest_planets_df = planets_df[1:3, ]
+
+furthest_planets_df = planets_df[6:8, ]
+
+# Have a look:
+closest_planets_df
+furthest_planets_df
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;closest_planets_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;closest_planets_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(closest_planets_df, planets_df[1:3, ])))) {
+    DM.result = list(FALSE, &quot;Did you select the first three rows of &#39;planets_df&#39;?&quot;)
+} else if (!exists(&quot;furthest_planets_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;furthest_planets_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(furthest_planets_df, planets_df[6:8, ])))) {
+    DM.result = list(FALSE, &quot;Make sure you select the last three rows of &#39;planets_df&#39;.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise7">
+					<div class="page-header">
+						<h1>Selection of data frame elements (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>Instead of using numerics to select elements of a data frame, you can also use the variable names to select columns of a data frame. </p>
+
+<p>Maybe you want to select only the first 3 elements of the variable &#39;type&#39;. One way to do this is: <code>planets_df[1:3,1]</code>. A possible disadvantage of this approach is that you have to know (or look up) the position of the variable &#39;type&#39;, which gets hard if you have a lot of variables. It is often easier just to make use of the variable name, e.g. <code>planets_df[1:3,&quot;type&quot;]</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Select for the last six rows only the diameter and assign this selection to `furthest_planets_diameter`.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>You select elements of a data frame conveniently with the square brackets. Select <code>3:8</code> for the rows, and <code>&quot;diameter&quot;</code> for the columns.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># The planets_df data frame from the previous exercise is pre-loaded: 
+furthest_planets_diameter = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># The planets_df data frame from the previous exercise is pre-loaded
+furthest_planets_diameter = planets_df[3:8, &quot;diameter&quot;]
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;furthest_planets_diameter&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;furthest_planets_diameter&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(furthest_planets_diameter, planets_df[3:8, 
+    &quot;diameter&quot;])))) {
+    DM.result = list(FALSE, &quot;Make sure you select the last six rows and only the &#39;diameter&#39; column.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise8">
+					<div class="page-header">
+						<h1>Only planets with rings</h1>
+					</div>
+
+					<div class="row">
+						<p>You&#39;ll often want to select an entire column, i.e. 1 specific variable from a data frame. Suppose you want to select all elements of the variable <code>rings</code>: both <code>planets_df[,5]</code> and <code>planets_df[,&quot;rings&quot;]</code> do the trick. </p>
+
+<p>However, there is a short-cut. Use the <code>$</code>-sign to tell R it only has to look up all the elements of the variable behind the sign: <code>data_frame_name$variable_name</code>.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Make use of the `$` -sign to create the `rings_vector` that contains all elements of the &#39;rings&#39; variable in the planets_df data frame.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p><code>data_frame_name$variable_name</code> is the most convenient way to select a variable from a data frame. In this case the data frame of choice is <code>planets_df</code> and the variable of choice is <code>rings</code>.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Create the rings_vector
+rings_vector = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Create the rings_vector
+rings_vector = planets_df$rings
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;rings_vector&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;rings_vector&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(rings_vector, planets_df$rings)))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;rings_vector&#39; doesn&#39;t contain all the element of the &#39;ring&#39; variable of the &#39;planets_df&#39;.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise9">
+					<div class="page-header">
+						<h1>Only planets with rings (2)</h1>
+					</div>
+
+					<div class="row">
+						<p>From highschool, you remember some planets in our solar system have rings and others don&#39;t. But due to other priorities at that time (read: puberty) you can&#39;t recall their names, let alone their rotation speed, etc. </p>
+
+<p>Could R help you out? (Spoiler alert: of course it can!) </p>
+
+<p>Mmm, type <code>rings_vector</code> in the console and you get: FALSE FALSE FALSE FALSE TRUE TRUE TRUE TRUE </p>
+
+<p>This means that the first 4 observations (or planets) do not have a ring (FALSE), but the other 4 do (TRUE). However, you don&#39;t get a nice overview of the names of these planets, their diameter, etc. As a next step, use <code>rings_vector</code> to select from <code>planets_df</code> all the data (i.e. all columns) on the four planets with rings.</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to `planets_with_rings_df` all data in the planets_df dataset for the planets with rings (i.e. where `rings_vector` is TRUE).
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Select elements from <code>planets_df</code> using the square brackets. The <code>rings_vector</code> contains boolean values and R will select only those rows/columns were the vector element is TRUE. In this case you want to select rows based on <code>rings_vector</code> and select all the columns.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Note that the planets_df dataset and rings_vector are pre-loaded in your workspace
+
+# Select the information on planets with rings:
+planets_with_rings_df = 
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Note that the planets_df dataset and rings_vector are pre-loaded in your
+# workspace
+
+# Select the information on planets with rings:
+planets_with_rings_df = planets_df[rings_vector, ]
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;planets_with_rings_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;planets_with_rings_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(planets_with_rings_df, planets_df[rings_vector, 
+    ])))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;planets_with_rings_df&#39; doesn&#39;t contain all the data of the planets with rings.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+rings_vector = planets_df$rings
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise10">
+					<div class="page-header">
+						<h1>Only planets with rings but shorter</h1>
+					</div>
+
+					<div class="row">
+						<p>So what exactly did you learn in the past exercises? You selected a subset from a data frame ( <code>planets_df</code> ), based on whether or not a certain condition was true (rings or no rings), and you managed to pull out all relevant data. Pretty awesome! By now, NASA is probably already flirting with your CV ;-). </p>
+
+<p>Now, let&#39;s move up one level and use the function <code>subset()</code>. You should see the <code>subset()</code> function as a short-cut to do exactly the same as what you just did. </p>
+
+<p><code>subset(data_frame_name, subset = some.condition)</code> </p>
+
+<p>The first argument of <code>subset()</code> specifies the dataset from which you want a subset. With the second argument, you give R the necessary information and conditions to select the correct subset. 
+For example: <code>subset(planets_df, subset=(planets_df$rings == TRUE))</code> </p>
+
+<p>R will give you exactly the same result as you got in the previous exercise. But this time without needing the <code>rings_vector</code>!</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Create a dataframe `small_planets_df` with planets that have a diameter smaller than earth (i.e smaller than 1, since diameter is a relative measure of the planets diameter).
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Sorry, you&#39;re on your own here.</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r"># Planets smaller than earth:
+small_planets_df  = # Your code here!
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Planets smaller than earth:
+small_planets_df = subset(planets_df, subset = planets_df$diameter &lt; 1)
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;small_planets_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;small_planets_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(small_planets_df, subset(planets_df, subset = planets_df$diameter &lt; 
+    1))))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;small_planets_df&#39; doesn&#39;t contain all the correct subset of planets_df.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+				<div class="exercise document" id="exercise11">
+					<div class="page-header">
+						<h1>Sorting</h1>
+					</div>
+
+					<div class="row">
+						<p>Making and creating rankings, is one of mankinds favorite affairs. These rankings can be useful (best universities in the world), entertaining (most influencial moviestars) or pointless (best 007 look-a-like). Up to you for which purpose you want to use your R skills ;-). </p>
+
+<p>In data analysis you will sort your data according to a certain variable in the dataset. In R, this is done with the help of the function <code>order()</code>. </p>
+
+<p><code>order()</code> is a function that, when applied on a variable, gives you in return the position of each element. Let&#39;s look at the vector <code>a</code>: <code>a = c(100,9,101)</code>. Now <code>order(a)</code> returns 2,1,3. Since 100 is the second largest element of the vector, 9 is the smallest element and 101 is the largest element.</p>
+
+<p>Subsequently, <code>a[order(a)]</code> will give you the ordered vector 9,100,101, since it first picks the second element of a, then the first, then the last. Got it? If you&#39;re not sure, use the console to play with the <code>order()</code> function.` </p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Click Submit Answer when you are ready.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p>Just play with the <code>order()</code> function in the console!</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># Just play around with the order function in the console to see how it
+# works Some examples:
+order(1:10)
+order(2:11)
+order(c(5, 4, 6, 7))
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!isTRUE(try(student_typed(&quot;order(&quot;)))) {
+    DM.result = list(FALSE, &quot;Makse sure to use the &#39;order&#39; function.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  													
+					</div>
+				</div>
+				<div class="exercise document" id="exercise12">
+					<div class="page-header">
+						<h1>Sorting your data frame</h1>
+					</div>
+
+					<div class="row">
+						<p>Alright, now that you understand the <code>order()</code> function, let&#39;s do something useful shall we? You&#39;d like to rearrange your data frame such that it starts with the largest planet and ends with the smallest one (i.e. sort on the column diameter).</p>
+
+					</div>
+
+					<div class="row">
+						<h2>Instructions</h2>
+						<pre><code>- Assign to the variable positions the desired ordering for the new data frame you will create in the next step. You can use the `order()` function for that, with the additional argument `decreasing=TRUE`.
+- Now create the data frame `largest_first_df`, wich contains the same information as `planets_df`, but with the planets in decreasing order of magnitude.
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Hint</h2>
+						<p><code>order(planets_df$diameter, decreasing=TRUE)</code> will give you the ordering of the variable diameter from largest to smallest. This is wat you should assign to positions. Use the variable positions then to select from the data <code>frame planets_df</code> !</p>
+						
+					</div>
+					<div class="row">
+						<h2>Sample code</h2>
+							<pre><code class="r">#NOTE: The data frame planets_df has been pre-loaded
+
+# What is the correct ordering based on the planets_df$diameter variable?
+positions =  
+
+# Create new &quot;ordered&quot; data frame:
+largest_first_df =
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Solution</h2>
+							<pre><code class="r"># NOTE: The data frame planets_df has been pre-loaded
+
+# What is the correct ordering based on the planets_df$diameter variable?
+positions = order(planets_df$diameter, decreasing = TRUE)
+
+# Create new &#39;ordered&#39; data frame:
+largest_first_df = planets_df[positions, ]
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Submission Correctness Test</h2>
+							<pre><code class="r">if (!exists(&quot;positions&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;positions&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(positions, order(planets_df$diameter, decreasing = TRUE))))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;positions&#39; doesn&#39;t contain all the correct ordering of the diameter column.&quot;)
+} else if (!exists(&quot;largest_first_df&quot;)) {
+    DM.result = list(FALSE, &quot;Please make sure to define a variable &#39;largest_first_df&#39;.&quot;)
+} else if (!isTRUE(try(all.equal(largest_first_df, planets_df[positions, ])))) {
+    DM.result = list(FALSE, &quot;Looks like &#39;largest_first_df&#39; doesn&#39;t contain the positions of the ordered &#39;planets_df&#39;.&quot;)
+} else {
+    DM.result = list(TRUE, &quot;Great! Continue to the next exercise.&quot;)
+}
+</code></pre>
+
+					</div>
+					<div class="row">
+						<h2>Pre-Exercise Code</h2>
+  						<pre><code class="r">planets = c(&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, 
+    &quot;Neptune&quot;)
+type = c(&quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, &quot;Terrestrial planet&quot;, 
+    &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;, &quot;Gass giant&quot;)
+diameter = c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation = c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings = c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df = data.frame(type, planets, diameter, rotation, rings)
+</code></pre>
+							
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- JavaScript plugins (requires jQuery) -->
+  <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="libraries/frameworks/datacamp/js/mathjax.js"></script>
+  <script>
+    $(document).ready(function(){
+      var navHeight = 199 - 29;
+      
+      $(document.body).scrollspy({
+        target: '#sidebar-affix',
+        offset: navHeight
+      })
+      
+      var $sideBar = $('#sidebar-affix');
+      
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            return navHeight;
+          }
+          , bottom: function () {
+            return 0;
+          }
+        }
+      });
+    });
+  </script></body>
+</html>
